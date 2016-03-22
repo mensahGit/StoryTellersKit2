@@ -1,0 +1,1004 @@
+(Typeface = Letter Gothic Std)
+//ADD SPRITENODE TO VIEW
+let bacon = 
+
+_assets
+_css
+_images
+_notes
+_scripts
+_video
+
+----------------------------------------------------------------------
+hello, from SkyHawk!
+
+mensah
+
+----------------------------------------------------------------------
+
+
+//ADD LABEL
+let textLabel = SKLabelNode(fontNamed: "ChalkDuster")
+textLabel.text = "I gets Busy."
+textLabel.fontSize = 80
+textLabel.position = CGPoint(x:CGRectMidX(self.frame),
+	y:CGRectMidY(self.frame))
+self.addChild(textLabel)
+
+
+//ADD SCENE TRANSITION
+let newSc = SceneOne (size:self.size)
+newSc.scaleMode = scaleMode
+let reveal = SKTransition.fadeWithDuration(1)
+self.view?.presentScene(newSc, transition:reveal)
+
+//ADD BACKGROUND COLOR
+let color = UIColor(red:1, green:0, blue:0, alpha:1)
+
+self.backgroundColor = color
+//or using SKColor let color = SKColor.greenColor()
+
+
+//ADD BUTTON
+let butt = SKSpriteNode(imageNamed: "btn")
+//...didMoveToView(view:SKView){...}
+butt.size = CGSize(width:202,
+	height: 75)
+	butt.anchorPoint = CGPoint(x:0.5,
+		y:0.5)
+	butt.position = CGPoint(x:self.frame.size.width/2,
+		y:self.frame.size.height * 0.6)
+	butt.zPosition = 100
+	butt.name = "btn"
+
+	self.addChild(butt)
+
+
+//TOUCHY-TOUCHY
+override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+	for touch in touches{
+
+		let location = touch.locationInNode(self)
+
+		if butt1.containsPoint(location){
+
+			print("Go to Scene Five")
+			goFiver()
+		}
+		if butt2.containsPoint(location){
+
+			print("Go to Scene Six")
+			goSixer()
+		}
+		else if butt3.containsPoint(location){
+
+			print("Go to Scene Seven")
+			goSevener()
+		}
+		else {
+
+			print("Go where you wanna!")
+		}
+	}
+}
+
+
+//ADD AUDIO TO BUTTON
+let audi = SKAudioNode(fileNamed: "boom.mp3")
+
+self.addChild(audi)
+
+
+//ADD ANIMATED TEXTURES TO VIEW
+import UIKit
+import SpriteKit
+
+class ShooterScene: SKScene {
+
+var score = 0
+var enemyCount = 10
+var texture = SKTexture()
+
+
+override func didMoveToView(view:SKView) {
+self.initShooterScene()
+}
+
+
+func initShooterScene() {
+
+let atlas = SKTextureAtlas(named:"shooter")
+
+for index in 1...atlas.textureNames.count {
+ let imgName = String(format:"shooter%01d", index)
+ 
+ texture += atlas.textureNamed(imgName)
+
+}
+}
+}
+
+//ADD GRAVITY
+for touch in touches {
+
+var posT = touch.locationNode(self)
+
+
+var b = SKShapeNode(circleOfRadius:25)
+b.fillColor = SKColor.redColor()
+b.position = posT
+b.physicsBody = SKPhysicsBody(circleOfRadius:25)
+b.physicsBody?.affectedByGravity = true
+b.physicsBody?.restitutionh = 1
+b.physicsBody?.linearDamping = 0
+
+self.addChild(b)
+}
+
+
+//ADD PARTICLES
+var rC = SKSpriteNode(imageNamed:"rC")
+rC.size = CGSize(width: 260, height: 150)
+rC.position = CGPoint(x:self.frame.size.width/2,
+					  y:self.frame.size.height * 0.2)
+self.addChild(rC)
+
+//New File > SpriteKit Particle file > Fire > Name rC.sks
+
+
+var r = SKEmitterNode(fileNamed:"rC.sks")
+r.position =CGPoint(x:rCloud.position.x,
+				    y:rCloud.position.y - rCloud.size.height/2)
+self.addChild(r)
+
+
+//ADD BACKGROUND AUDIO TO VIEW
+
+import Foundation
+
+let music: AVAudioPlayer?
+let player: AVAudioPlayer?
+
+func prepareMusic() {
+
+music?.volume = 0.5
+music?.play()
+
+}
+
+//...within didMoveToView(view:SKView)...{
+if let music = self.preparePlayerWithFile() {
+self.music = music
+}
+
+prepareMusic()
+
+}
+
+func preparePlayerWithFile() -> AVAudioPlayer? {
+
+if let path = NSBundle.mainBundle().pathForResource("juicy", ofType:"mp3") {
+let url = NSURL(fileURLWithPath: path)
+
+do {
+try music = AVAudioPlayer(contentsOfURL:url)
+}catch{
+print("Music unable to load!")
+}
+}
+return music
+
+}
+
+//}
+
+//MAKE A COUNTER
+@IBOutlet weak var label:UILabel!
+var clickCount:Int = 0
+
+@IBAction func didClick(sender:AnyObject) {
+clickCount++
+label.text = "\(clickCount)"
+
+}
+
+
+//USE THE TEMPLATE DESIGN PATTERN
+
+class SceneClass
+{
+final func sceneMethod()
+{
+prepareAudio()
+setUpScene()
+setTimer()
+}
+
+
+public class NewScene extends SceneClass()
+{
+public func CreateScene()
+{
+var testScene:AbstractClass = new ConcreteClass()
+testScene.sceneMethod()
+}
+}
+}
+
+protocol PushScene{
+func pushString(string: String) -> String
+
+}
+//STRATEGY PATTERN
+//the strategy pattern you define algorithms or behavior
+//and then you compose you objects out of those behaviors
+
+//let's define a protocol named 
+'PrintStrategy' and within it define a method called
+'printString' that returns a string
+protocol PrintStrategy {
+    func printString(string: String) -> String
+}
+
+
+//now let's create a class and call it Printer. 
+//Within this class define a constant named 'strategy which
+also conforms to the protocol named 'PrintStrategy' and
+implements the method defined in protocol 'PrintStrategy'
+class Printer {
+
+    let strategy: PrintStrategy
+
+    func printString(string: String) -> String {
+        return self.strategy.printString(string)
+    }
+//initialize this class and instantiate constant named 'strategy'
+    init(strategy: PrintStrategy) {
+        self.strategy = strategy
+    }
+}
+
+
+
+//now let's create a new class called ''UpperCaseStrategy'
+//that adopts and conforms to protocol 'PrintStrategy'
+class UpperCaseStrategy : PrintStrategy {
+    func printString(string:String) -> String {
+        return string.uppercaseString
+    }
+}
+
+//now let's create a new class called ''LowerCaseStrategy'
+//that adopts and conforms to protocol 'PrintStrategy'
+class LowerCaseStrategy : PrintStrategy {
+    func printString(string:String) -> String {
+        return string.lowercaseString
+    }
+}
+//Usage
+//Ok, babe! Let's implement these two newly created classes
+//declaring a variable named'lower' that outputs a string
+//with all lowercase members
+var lower = Printer(strategy:LowerCaseStrategy())
+lower.printString("O tempora, o mores!")
+
+//declaring a variable named'upper' that outputs a string
+//with all uppercase members
+var upper = Printer(strategy:UpperCaseStrategy())
+upper.printString("O tempora, o mores!")
+
+
+
+///ANOTHER STRATEGY EXAMPLE
+protocol TapBehavior{
+func tap()
+}
+
+class CartTapBehavior: TapBehavior {
+func tap() {
+print("I'm the cart tap!")
+}
+}
+
+class ProgramNowBehavior: TapBehavior {
+func tap(){
+print("I'm the program now tap!")
+}
+}
+
+//let's use this in a program
+class SomeViewWithAButton: UIView {
+@IBOutlet weak var aButton:UIButton!
+
+var tapBehavior:TapBehavior?
+
+@IBAction func didTapButton(sender: AnyObject) {
+tapBehavior?.tap()
+}
+}
+
+Programming to the Interface not the Implementation
+Stay away from concrete types(Duck duck = new MallardDuck())
+An improvement, using conditional logic we are making runtime decisions about which class
+to instantiate.
+
+Open-Close Principle
+Encapsulate what Varies
+Let's separate the process of creating concrete objects from the clients
+that use those objects, thereby, reducing the 
+dependency of those clients on the concrete implementations
+Factory > Product > Pizza Store
+
+public class Pizza createPizza(String type) {
+Pizza pizza = null;
+
+if (type.equals("cheese")) {
+pizza = new CheesePizza();
+} else if (type.equals("pepperoni")){
+pizza = new PepperoniPizza(); 
+} else if (type.equals("clam")){
+pizza = new ClamPizza();
+} else if (type.equals("veggie")){
+pizza = new VeggiePizza(); 
+}
+return pizza;
+}
+}
+
+...Program to Interface not Implementation;
+
+import java.util.ArrayList;
+
+abstract public class Pizza {
+String name;
+String dough;
+String sauce;
+ArrayList<String> toppings = new ArrayList<String>();
+
+public String getName() {
+return name;
+}
+
+public void prepare() {
+System.out.println("Preparing " + name);
+}
+public void bake() {
+System.out.println("Baking " + name);
+}
+public void cut() {
+System.out.println("Cutting " + name);
+}
+public void box() {
+System.out.println("Boxing " + name);
+}
+
+public String toString() {
+StringBuffer display = new StringBuffer();
+display.append("---" name + "---\n");
+display.append(dough + "\n");
+display.append(sauce + "\n");
+for (int i = 0; i < toppings.size(); i++) {
+display.append((String)toppings.get(i) + "\n");
+}
+return display.toString();
+}
+
+
+public class CheesePizza extends Pizza {
+name ="Cheese Pizza"
+dough ="Regular Crust"
+sauce ="Marinara Pizza Sauce"
+toppings.add("Fresh Mozzarella");
+toppings.add("Parmesan");
+}
+////////////////////////////////////////////////////////////////////////
+
+let camLoc:(CGPointMake(player.position.x, player.position.y + 200))
+let movCam: SKAction = SKAction.moveTo(camLoc, duration: 0.5)
+movCam.timingMode = .EaseOut
+
+
+let run: SKAction = SKAction.runBlock { 
+self.isMoving = false;
+self.player.physicsBody?.affectByGravity = true;
+}
+let seq: SKAction = SKAction.sequence([movCam, run])
+ourCamera.runAction(seq)
+
+...update...
+if(isMoving ==false) {
+ourCamera.position = CGPointMake(player.position.x, player.position.y + 200)
+player.position = CGPointMake(player.position.x + 1, player.position.y)
+}
+
+
+
+
+//
+//  GameScene.swift
+//  Gravity
+//
+//  Created by Mensah on 3/7/16.
+//  Copyright (c) 2016 Mensah Moody. All rights reserved.
+//
+
+import SpriteKit
+
+//use bitshifts powers of 2
+let wallMask:UInt32 = 0x1 << 0 //1 ...set Category Mask to 1 in GameScene
+let ballMask:UInt32 = 0x1 << 1 //2 ...set Category Mask to 2 in GameScene
+let pegMask:UInt32 = 0x1 << 2 //4 ...set Category Mask to 4 in GameScene
+let squareMask:UInt32 = 0x1 << 3 //8 ...set Category Mask to 8 in GameScene
+let purpMask:UInt32 = 0x1 << 4 //16 ...set Category Mask to 16 in GameScene
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    var ball:SKSpriteNode!
+    var cannon:SKSpriteNode!
+    var touchLocation:CGPoint = CGPointZero
+    
+    override func didMoveToView(view: SKView) {
+        /* Setup your scene here */
+        cannon = self.childNodeWithName("cannon") as! SKSpriteNode
+        self.physicsWorld.contactDelegate = self
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch begins */
+        touchLocation = touches.first!.locationInNode(self)
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch begins */
+        touchLocation = touches.first!.locationInNode(self)
+    }
+    
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch begins */
+        let ball:SKSpriteNode = SKScene(fileNamed:"Ball")!.childNodeWithName("ball")! as AnyObject as! SKSpriteNode
+        ball.removeFromParent()
+        self.addChild(ball)
+        ball.zPosition = 0
+        ball.position = cannon.position
+        
+        let angInRad = Float(cannon.zRotation)
+        let speed = CGFloat(300.0)
+        let vx:CGFloat = CGFloat(cosf(angInRad)) * speed
+        let vy:CGFloat = CGFloat(sinf(angInRad)) * speed
+        ball.physicsBody?.applyImpulse(CGVectorMake(vx,vy))
+        
+        ball.physicsBody?.collisionBitMask = wallMask | ballMask | pegMask | purpMask
+        ball.physicsBody?.contactTestBitMask = ball.physicsBody!.collisionBitMask | squareMask
+    }
+    
+    
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+        let percent = touchLocation.x / size.width
+        let newAng = percent * 540 - 180
+        cannon.zRotation = CGFloat(newAng) * CGFloat((M_PI) / 180.0)
+        
+    }
+    
+    func didBeginContact(contact: SKPhysicsContact) {
+        //print("contact")
+        let ball = (contact.bodyA.categoryBitMask == ballMask) ? contact.bodyA : contact.bodyB
+        let other = (ball == contact.bodyA) ? contact.bodyB : contact.bodyA
+        if other.categoryBitMask == pegMask || other.categoryBitMask == purpMask {
+            self.didHitPeg(other)
+        }
+        else if other.categoryBitMask == squareMask {
+            print("hit square!")
+            
+        }
+        else if other.categoryBitMask == wallMask {
+            print("hit wall!")
+            
+        }
+        else if other.categoryBitMask == ballMask {
+            print("hit ball!")
+            
+        }
+    }
+    
+    func didHitPeg(peg:SKPhysicsBody) {
+        let spark:SKEmitterNode = SKEmitterNode(fileNamed: "Fire")!
+        spark.position = peg.node!.position
+        self.addChild(spark)
+        peg.node?.removeFromParent()
+        
+    }
+}
+
+
+
+GRAPEPOP
+
+var counter:Int = 0
+var randX = Int(arc4random_uniform(255))
+var randY = Int(arc4random_uniform(425))
+var coin:SKSpriteNode?
+
+//i need a loop to cycle thru my grape objects
+        for var index = 0; index < 500; ++index {
+//within the loop I need them randomly placed around and within the viewbounds,
+this will involve a random number for x, and a random number for y
+            print("printing my index \(index)")
+            
+        }
+
+//when the grapes are touched they burst with sparks and are removed from view; 
+let spark:SKEmitterNode = SKEmitterNode(fileNamed: "Fire")!
+            spark.position = location
+            self.addChild(spark)
+
+a sound plays; 
+//b=SKAudioNode(fileNamed: "ippowhayee.mp3")
+        //self.addChild(b)
+the score increases by 1point and the timer continues to decrement from 30secs
+ var scoreCount = 0
+  var seconds = 0
+  var timer:SKAction?
+  var grapeBeep : AVAudioPlayer?
+  var secondBeep : AVAudioPlayer?
+
+    func grapePressed()  {
+    count++
+    myScore.text = "Score \n\(scoreCount)"
+    grapeBeep?.play()
+  }
+
+let myScore = SKLabelNode(fontNamed:"Chalkduster")
+        myScore.text = ""
+        myScore.fontSize = 50
+        myScore.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+        self.addChild(myScore)
+
+
+func setupGame()  {
+    seconds = 30
+    count = 0
+    
+    timerLabel.text = "Time: \(seconds)"
+    scoreLabel.text = "Score: \(count)"
+    backgroundMusic?.volume = 0.3
+    backgroundMusic?.play()
+    timer = SKAction.repeatAction(subtractTime, count: 30)
+  }
+
+
+
+//GRAPE POP 2
+//
+//  GameScene.swift
+//  GrapePop
+//
+//  Created by Mensah on 3/11/16.
+//  Copyright (c) 2016 Mensah Moody. All rights reserved.
+//
+
+import SpriteKit
+import UIKit
+import Foundation
+
+var counter:Int = 0
+
+
+class GameScene: SKScene {
+    override func didMoveToView(view: SKView) {
+        
+        func random() -> CGFloat {
+            return CGFloat(Float(arc4random()) / 0xFFFFFFFF) }
+        
+        func random2(min min: CGFloat, max: CGFloat) -> CGFloat {
+            return random() * (max - min) + min }
+        
+        backgroundColor = SKColor.blackColor()
+        
+        
+       for (counter = 1; counter <= 50; counter++) {
+        /* Setup your scene here */
+        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+        myLabel.text = "Hello, World!"
+        myLabel.fontSize = 20
+        myLabel.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+        
+        self.addChild(myLabel)
+        print("fired \(counter)")
+        
+        func spawnEnemy() {
+            let enemy = SKSpriteNode(imageNamed: "gargar")
+            enemy.name = "enemy"
+            enemy.position = CGPoint(x: frame.size.width, y: frame.size.height * random2(min: 0, max: 1))
+            addChild(enemy)
+        }
+        runAction(SKAction.repeatActionForever( SKAction.sequence([ SKAction.runBlock(spawnEnemy),
+            SKAction.waitForDuration(1.0)])))
+
+
+}
+        
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+       /* Called when a touch begins */
+        
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            
+            
+            let sprite = SKSpriteNode(imageNamed:"Spaceship")
+            
+            sprite.xScale = 0.5
+            sprite.yScale = 0.5
+            sprite.position = location
+            
+            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+            
+            sprite.runAction(SKAction.repeatActionForever(action))
+            
+            self.addChild(sprite)
+        }
+    }
+   
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+    }
+}
+
+//GRAPEPOP 3
+//  GameScene.swift
+//  GrapePop
+//
+//  Created by Mensah on 3/11/16.
+//  Copyright (c) 2016 Mensah Moody. All rights reserved.
+//
+
+import SpriteKit
+import UIKit
+import Foundation
+
+var counter:Int = 0
+let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+let enemy = SKSpriteNode(imageNamed: "gargar")
+
+class GameScene: SKScene {
+    
+    
+    override func didMoveToView(view: SKView) {
+        
+        func random() -> CGFloat {
+            return CGFloat(Float(arc4random()) / 0xFFFFFFFF) }
+        
+        func random2(min min: CGFloat, max: CGFloat) -> CGFloat {
+            return random() * (max - min) + min }
+        
+        backgroundColor = SKColor.blackColor()
+        
+        
+        for (counter = 1; counter <= 50; counter++) {
+            /* Setup your scene here */
+            let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+            myLabel.text = "Hello, World!"
+            myLabel.fontSize = 20
+            myLabel.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+            
+            self.addChild(myLabel)
+            print("fired \(counter)")
+            
+            func spawnEnemy() {
+                let enemy = SKSpriteNode(imageNamed: "gargar")
+                enemy.name = "enemy"
+                enemy.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+                addChild(enemy)
+            }
+            runAction(SKAction.repeatActionForever( SKAction.sequence([ SKAction.runBlock(spawnEnemy),
+                SKAction.waitForDuration(1.0)])))
+            
+            
+        }
+        
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch begins */
+        
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            
+            if enemy.containsPoint(location) {
+                
+                print("loc:\(enemy.position)")
+                print("loc:\(location)")
+            }
+            else if myLabel.containsPoint(location) {
+                myLabel.removeFromParent()
+                
+                print("loc:\(myLabel.position)")
+                print("loc:\(location)")
+                print("labelName:\(myLabel.name)")
+            }
+            
+//            let sprite = SKSpriteNode(imageNamed:"gargar")
+//            
+//            sprite.xScale = 0.5
+//            sprite.yScale = 0.5
+//            sprite.position = location
+//            
+//            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+//            
+//            sprite.runAction(SKAction.repeatActionForever(action))
+//            
+//            self.addChild(sprite)
+        }
+    }
+    
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+    }
+}
+//GRAPEPOP4
+//  GameScene.swift
+//  GrapePop
+//
+//  Created by Mensah on 3/11/16.
+//  Copyright (c) 2016 Mensah Moody. All rights reserved.
+//
+
+import SpriteKit
+import UIKit
+import Foundation
+
+var counter:Int = 0
+let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+let enemy = SKSpriteNode(imageNamed: "gargar")
+
+class GameScene: SKScene {
+    
+    
+    override func didMoveToView(view: SKView) {
+        
+        func random() -> CGFloat {
+            return CGFloat(Float(arc4random()) / 0xFFFFFFFF) }
+        
+        func random2(min min: CGFloat, max: CGFloat) -> CGFloat {
+            return random() * (max - min) + min }
+        
+        backgroundColor = SKColor.blackColor()
+        
+        
+        for (counter = 1; counter <= 50; counter++) {
+            /* Setup your scene here */
+            let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+            myLabel.text = "Hello, World!"
+            myLabel.name = "beef"
+            myLabel.fontSize = 20
+            myLabel.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+            
+            self.addChild(myLabel)
+            print("fired \(counter)")
+            
+            func spawnEnemy() {
+                let enemy = SKSpriteNode(imageNamed: "gargar")
+                enemy.name = "enemy"
+                enemy.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+                addChild(enemy)
+            }
+            //runAction(SKAction.repeatActionForever( SKAction.sequence([ SKAction.runBlock(spawnEnemy),
+                //SKAction.waitForDuration(1.0)])))
+            runAction(SKAction.sequence([SKAction.runBlock(spawnEnemy)]))
+            
+        }
+        
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        /* Called when a touch begins */
+        
+        for touch in touches {
+            let location = touch.locationInNode(self)
+            
+            print("location touched \(location)")
+            
+            // Remove all sprites named "stars"
+            self.enumerateChildNodesWithName("beef") {
+                node, stop in
+                node.removeFromParent();
+            }
+            
+//            let sprite = SKSpriteNode(imageNamed:"gargar")
+//            
+//            sprite.xScale = 0.5
+//            sprite.yScale = 0.5
+//            sprite.position = location
+//            
+//            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
+//            
+//            sprite.runAction(SKAction.repeatActionForever(action))
+//            
+//            self.addChild(sprite)
+        }
+    }
+    
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+    }
+}
+
+
+//SHORT ANSWER
+
+class GameScene: SKScene {
+    
+    
+    override func didMoveToView(view: SKView) {
+        
+        func random() -> CGFloat {
+            return CGFloat(Float(arc4random()) / 0xFFFFFFFF) }
+        
+        func random2(min min: CGFloat, max: CGFloat) -> CGFloat {
+            return random() * (max - min) + min }
+        
+        backgroundColor = SKColor.blackColor()
+        
+        
+        for (counter = 1; counter <= 50; counter++) {
+            /* Setup your scene here */
+            let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+            myLabel.text = "Hello, World!"
+            myLabel.fontSize = 20
+            myLabel.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+            
+            self.addChild(myLabel)
+            print("fired \(counter)")
+            
+            func spawnEnemy() {
+                let enemy = SKSpriteNode(imageNamed: "gargar")
+                enemy.name = "enemy"
+                enemy.position = CGPoint(x: frame.size.width * random2(min: 0, max: 1), y: frame.size.height * random2(min: 0, max: 1))
+                addChild(enemy)
+            }
+            //runAction(SKAction.repeatActionForever( SKAction.sequence([ SKAction.runBlock(spawnEnemy),
+                //SKAction.waitForDuration(1.0)])))
+            runAction(SKAction.sequence([SKAction.runBlock(spawnEnemy)]))
+            
+        }
+        
+        
+    }
+
+    //A GOOD FIND....
+    func starsSpawn() {
+    // Remove all sprites named "stars"
+    self.enumerateChildNodesWithName("stars") {
+        node, stop in
+        node.removeFromParent();
+    }
+    var spaceInX:CGFloat = 0
+
+    for var i = 0; i<gameLife; i=i+1 {
+
+        starsTexture = SKTexture(imageNamed: "star")
+        starsTexture.filteringMode = SKTextureFilteringMode.Nearest
+        starNode = SKSpriteNode(texture: starsTexture)
+        starNode.zPosition = 30
+        starNode.size = CGSize(width: 20, height: 20)
+        starNode.position = CGPoint(x: CGRectGetMinX(self.frame) + 30 + spaceInX, y: CGRectGetMinY(self.frame) + 30)
+        starNode.name = "stars"
+        self.addChild(starNode)
+        println(starNode)
+        spaceInX = spaceInX + 40
+    }
+}
+//PLACE ART WITH SKTEXTURE AND ANIMATE
+var peg:SKSpriteNode!
+----didMoveToView...
+peg = self.childNodeWithName("peg") as! SKSpriteNode
+
+----touchesBegan...
+var frames:[SKTexture] = []
+for var i:Int =1; i <= 10; i++ {
+    let tex:SKTexture = SKTexture(imageNamed: "\(i).png")
+    frames.append(tex)
+}
+----outside forloop, animate tex...
+peg.runAction(SKAction.animateWithTextures(frames,
+timePerFrame: 0.03))
+}
+
+//BUILD ON/OFF BUTTON
+import UIKit
+class ViewController: UIViewController {
+     @IBOutlet weak var label: UILabel!
+     var isOn:Bool = false
+
+     @IBAction func didClickButton(sender:AnyObject) {
+
+if isOn ==false {
+    isOn = true
+    label.text = "On"
+}
+else {
+    isOn = false
+    label.text = "Off"
+}
+}
+
+     }
+
+}
+
+//ITERATE THRU ALL NODES
+  override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+        self.enumerateChildNodesWithName("*") {
+            node, stop in
+            //#2
+            if let _ = node as? SKNode {
+                
+                print("\(myLabel.name)") //call update in foundBro (broNode)
+                
+
+                
+            }
+            
+        } //ends enumeration block
+        
+    }
+
+//REMOVE NODE IF FALLS OUTSIDE OF VIEW FRAME
+var enemy: SKSpriteNode?
+----
+ override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+       super.update(currentTime)
+        
+        if let enemy = enemy,
+        view = self.view
+        where
+        CGRectContainsRect(view.frame, enemy.frame) == false &&
+            CGRectIntersectsRect(enemy.frame,  view.frame) == false {
+                
+                enemy.removeFromParent()
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
