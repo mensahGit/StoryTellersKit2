@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Pages</key>
+	<dict>
+		<key>Cover</key>
+		<dict>
+			<key>Elements</key>
+			<dict>
+				<key>Sky</key>
+				<dict>
+					<key>TouchEvent</key>
+					<dict/>
+					<key>OpenPage</key>
+					<string>Page</string>
+					<key>PositionPercentageWidth</key>
+					<real>0.5</real>
+					<key>PositionPercentageHeight</key>
+					<real>0.5</real>
+					<key>SizeHeightToSceneHeight</key>
+					<true/>
+					<key>SizeWidthToSceneWidth</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>Settings</key>
+			<dict>
+				<key>InitialCameraPhone</key>
+				<string>SomeCameraForPhone</string>
+				<key>InitialCamera</key>
+				<string>SomeCamera</string>
+			</dict>
+		</dict>
+		<key>Page</key>
+		<dict>
+			<key>Settings</key>
+			<dict>
+				<key>InitialCameraPhone</key>
+				<string>SomeCameraForPhone</string>
+				<key>InitialCamera</key>
+				<string>SomeCamera</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Elements</key>
+	<dict>
+		<key>Sky</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>
